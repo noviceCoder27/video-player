@@ -5,9 +5,9 @@ import { useBoundStore } from "../store/store";
 
 const Note = ({setOpenPopup,data,setPlayed,setOpenModal,setEdit,setSkip}) => {
 
+  
   const noteRef = useRef(null);
   const updateCurrentNodeId = useBoundStore(state => state.updateCurrentNodeId);
-  const image = useBoundStore(state => state.image);
 
   const deletePopup = () => {
      const _id = noteRef.current.id;

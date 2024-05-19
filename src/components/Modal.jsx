@@ -11,7 +11,8 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
   const getNote = useBoundStore(state => state.getNote);
   const noteDetails = useBoundStore(state => state.note);
   const updateNote = useBoundStore(state => state.updateNote);
-  const [note,setNote] = useState({date: "", timestamp, content: "",image: ""});
+  const [note,setNote] = useState({date: "", timestamp, content: "",image: null});
+  const [chosenImg,setChosenImg] = useState(false);
 
   useEffect(() => {
     if(edit) {
@@ -24,7 +25,7 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
 
   const createNote = () => {
     if(checkContent(note.content)) {
-      const noteObj = {...note,date: new Date(),image};
+      const noteObj = chosenImg ? {...note,date: new Date(),image}: {...note,date: new Date(),image: null};
       addNote(noteObj,video);
       setOpenModal(false);
       toastSuccess("Note Added");
@@ -45,7 +46,7 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
         <h3 className = "mr-auto mt-2 mb-3 text-[1.5rem] font-semibold">Note Content</h3>
         <textarea placeholder = "Add your content..." className = "h-full p-2 border-2 border-[#EAECF0] rounded-lg" value = {note?.content} onChange = {(e) => setNote(prev => ({...prev,content: e.target.value}))}></textarea>
         <div className="flex w-full gap-2 my-5 itmems-center">
-          <ImageUploader />
+          {!edit && <ImageUploader setChosenImg = {setChosenImg}/>}
           <button className = " ml-auto border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-green-200" onClick = {edit? updateNoteDetails: createNote}>
             {edit ? "Update Note" : "Add Note" }
           </button>

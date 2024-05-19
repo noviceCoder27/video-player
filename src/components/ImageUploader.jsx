@@ -1,7 +1,7 @@
 import { useBoundStore } from "../store/store";
 
 
-const ImageUploader = () => {
+const ImageUploader = ({setChosenImg}) => {
 
     const setImage = useBoundStore(state => state.setImage)
     
@@ -10,9 +10,9 @@ const ImageUploader = () => {
       const reader = new FileReader();
   
       reader.onloadend = () => {
+        setChosenImg(true);
         setImage(reader.result);
       };
-  
       reader.readAsDataURL(file);
     };
     return (
