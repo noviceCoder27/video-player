@@ -3,6 +3,7 @@ import { useBoundStore } from './../store/store';
 import { useEffect } from "react";
 import { checkContent } from "../utils/validate";
 import { toastSuccess } from "../utils/toast";
+import ImageUploader from "./ImageUploader";
 
 
 const Modal = ({setOpenModal,timestamp,edit,video}) => {
@@ -10,7 +11,7 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
   const getNote = useBoundStore(state => state.getNote);
   const noteDetails = useBoundStore(state => state.note);
   const updateNote = useBoundStore(state => state.updateNote);
-  const [note,setNote] = useState({date: "", timestamp, content: ""});
+  const [note,setNote] = useState({date: "", timestamp, content: "",image: ""});
 
   useEffect(() => {
     if(edit) {
@@ -19,10 +20,11 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
     }
   },[noteId,noteDetails]);
   const addNote = useBoundStore(state => state.addNote);
+  const image = useBoundStore(state => state.image);
 
   const createNote = () => {
     if(checkContent(note.content)) {
-      const noteObj = {...note,date: new Date()};
+      const noteObj = {...note,date: new Date(),image};
       addNote(noteObj,video);
       setOpenModal(false);
       toastSuccess("Note Added");
@@ -42,11 +44,12 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
       <div className = "fixed w-[60vw] p-5 bg-white h-[300px] rounded-lg text-center flex flex-col min-w-[250px] max-w-[600px] top-[15rem] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
         <h3 className = "mr-auto mt-2 mb-3 text-[1.5rem] font-semibold">Note Content</h3>
         <textarea placeholder = "Add your content..." className = "h-full p-2 border-2 border-[#EAECF0] rounded-lg" value = {note?.content} onChange = {(e) => setNote(prev => ({...prev,content: e.target.value}))}></textarea>
-        <div className="flex gap-2 my-5 ml-auto">
-          <button className = "border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-green-200" onClick = {edit? updateNoteDetails: createNote}>
+        <div className="flex w-full gap-2 my-5 itmems-center">
+          <ImageUploader />
+          <button className = " ml-auto border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-green-200" onClick = {edit? updateNoteDetails: createNote}>
             {edit ? "Update Note" : "Add Note" }
           </button>
-            <button className = "border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-gray-200" onClick={() => setOpenModal(false)}>Cancel</button>
+          <button className = "border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-gray-200" onClick={() => setOpenModal(false)}>Cancel</button>
         </div>
       </div>
     </>
