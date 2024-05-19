@@ -16,11 +16,18 @@ const VideoPlayer = ({played,setPlayed,video,skip,setSkip}) => {
 
   useEffect(() => {
     const getData = async() => {
-      const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${video}&key=${api_key}&fields=items(id,snippet(title,description),statistics)&part=snippet,statistics`);
-      const data = await res.json();
-      const title = data.items[0].snippet.title;
-      const description =  data.items[0].snippet.description;
-      setDetails({title, description});
+      try {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${video}&key=${api_key}&fields=items(id,snippet(title,description),statistics)&part=snippet,statistics`);
+        const data = await res.json();
+        const title = data.items[0].snippet.title;
+        const description =  data.items[0].snippet.description;
+        setDetails({title, description});
+      } catch(err) {
+        setDetails({title: "Video Title goes here", description: "This is the description of the video"});
+        setDuration(0);
+        setPlayed(0);
+        setPlaying(false);
+      }
     }
     getData();
   },[video]);
