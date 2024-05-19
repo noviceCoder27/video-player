@@ -77,7 +77,7 @@ const VideoPlayer = ({played,setPlayed,video,skip,setSkip}) => {
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
         />
-        <div className = "absolute bottom-[3.7rem] left-5 flex items-center gap-2 w-[97%] ">
+        <div className = "absolute bottom-[3.7rem] left-5 flex items-center gap-2 w-[97%] max-md:w-[95%]  max-sm:w-[90%]">
           <button onClick={handlePlayPause} className=' w-[20px]'>
             {playing ? <img width = "17px" src = {PauseIcon} alt = "Pause Icon" />: <img width = "15px" src = {PlayIcon} alt = "Play Icon" />}
           </button>
@@ -90,7 +90,7 @@ const VideoPlayer = ({played,setPlayed,video,skip,setSkip}) => {
             className = "w-full cursor-pointer"
           />
         </div>
-        <div className = " text-white justify-between absolute bottom-[2.3rem] left-5 flex items-center gap-2 w-[97%] max-sm:w-[90%]">
+        <div className = " text-white justify-between absolute bottom-[2.3rem] left-5 flex items-center gap-2 w-[97%] max-md:w-[95%]  max-sm:w-[90%]">
           <p>{formatPlaybackTime(played)}</p>
           <p>{formatPlaybackTime(duration)}</p>
         </div>       

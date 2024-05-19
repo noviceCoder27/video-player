@@ -39,7 +39,7 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
   return (
     <>
       <div className = "fixed top-0 bottom-0 left-0 w-full bg-black opacity-50" onClick={() => setOpenModal(false)}></div>
-      <div className = "fixed w-[60vw] p-5 bg-white h-[300px] rounded-lg text-center flex flex-col min-w-[250px] max-w-[600px] top-[15rem] left-[35%]">
+      <div className = "fixed w-[60vw] p-5 bg-white h-[300px] rounded-lg text-center flex flex-col min-w-[250px] max-w-[600px] top-[15rem] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
         <h3 className = "mr-auto mt-2 mb-3 text-[1.5rem] font-semibold">Note Content</h3>
         <textarea placeholder = "Add your content..." className = "h-full p-2 border-2 border-[#EAECF0] rounded-lg" value = {note?.content} onChange = {(e) => setNote(prev => ({...prev,content: e.target.value}))}></textarea>
         <div className="flex gap-2 my-5 ml-auto">

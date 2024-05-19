@@ -41,8 +41,8 @@ function App() {
     <main>
       <Toaster />
       <h1 className="mb-5 text-[2rem] font-semibold">Video Player With Notes</h1>
-      <div className = "flex items-center w-full gap-5 my-5">
-        <input className = " w-[30%] border-2 border-[#475467] p-2 rounded-lg" placeholder = "Enter video id or url" value = {video} onChange = {(e) => {setVideo(e.target.value)}}/>  
+      <div className = "flex flex-wrap items-center w-full gap-5 my-5">
+        <input className = " w-[30%] min-w-[200px] border-2 border-[#475467] p-2 rounded-lg" placeholder = "Enter video id or url" value = {video} onChange = {(e) => {setVideo(e.target.value)}}/>  
         <button className = "border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-gray-200" onClick = {() => {setVideo("tXlZCW26bto")}}>
           Default Video
         </button>
