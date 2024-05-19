@@ -38,7 +38,7 @@ const Note = ({setOpenPopup,data,setPlayed,setOpenModal,setEdit,setSkip}) => {
           </div>
         </div>
         <div className = "border-2 border-[#EAECF0] py-2 px-5 rounded-lg">
-          {data?.image && <img src = {data.image} className = "w-[20%] min-w-[200px]" />}
+          {data?.image && <img src = {data.image} className = "w-[20%] min-w-[200px] mb-5" />}
           <p className='text-[#344054]'>{data.content}</p>
         </div>
         <div className = "flex gap-2 ml-auto">
