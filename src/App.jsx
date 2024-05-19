@@ -16,6 +16,7 @@ function App() {
   const [played,setPlayed] = useState(0);
   const [video,setVideo] = useState("");
   const [skip,setSkip] = useState(false);
+  const [addBtn,setAddBtn] = useState(false);
   const notes = useBoundStore(state => state.notes);
 
   const openNoteModal = () => {
@@ -47,17 +48,24 @@ function App() {
           Default Video
         </button>
       </div>
-      <VideoPlayer played = {played} setPlayed = {setPlayed} video = {video} skip = {skip} setSkip={setSkip}/>
+      <VideoPlayer 
+      played = {played} 
+      setPlayed = {setPlayed} 
+      video = {video} 
+      skip = {skip} 
+      setSkip={setSkip}
+      setAddBtn = {setAddBtn}
+      />
       <section className= "my-5 p-5 border-2 border-[#EAECF0] rounded-xl">
         <div className = "flex flex-wrap items-center justify-between gap-4">
           <div>
             <h3 className= "font-bold text-[1.5rem]">My notes</h3>
             <p className= "text-[#475467]">All your notes at a single place. Click on any note to go to specific timestamp in the video.</p>
           </div>
-          <button className = "border-2 border-[#EAECF0] p-2 rounded-lg flex gap-2 items-center hover:bg-gray-200" onClick={openNoteModal}>
+          {addBtn && <button className = "border-2 border-[#EAECF0] p-2 rounded-lg flex gap-2 items-center hover:bg-gray-200" onClick={openNoteModal}>
             <span className = "w-6 h-6 rounded-full border-2 border-[#667085] text-[#667085] flex items-center justify-center">+</span>
             <span className = "ml-auto font-semibold text-[#667085] ">Add new note</span>
-          </button> 
+          </button> }
         </div>
         <hr className = "my-5 bg-[#EAECF0]"/>
         <div>

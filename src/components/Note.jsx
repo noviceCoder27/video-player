@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { formatDate, formatTimestamp } from "../utils/parseTime"
 import { useBoundStore } from "../store/store";
+import parse from 'html-react-parser';
 
 
 const Note = ({setOpenPopup,data,setPlayed,setOpenModal,setEdit,setSkip}) => {
@@ -39,7 +40,7 @@ const Note = ({setOpenPopup,data,setPlayed,setOpenModal,setEdit,setSkip}) => {
         </div>
         <div className = "border-2 border-[#EAECF0] py-2 px-5 rounded-lg">
           {data?.image && <img src = {data.image} className = "w-[20%] min-w-[200px] mb-5" />}
-          <p className='text-[#344054]'>{data.content}</p>
+          <p className='text-[#344054]'>{parse(data.content)}</p>
         </div>
         <div className = "flex gap-2 ml-auto">
           <button className = "border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-red-400 hover:text-white" onClick={deletePopup}>

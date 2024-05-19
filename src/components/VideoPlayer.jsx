@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const api_key = import.meta.env.VITE_API_KEY;
 
 
-const VideoPlayer = ({played,setPlayed,video,skip,setSkip}) => {
+const VideoPlayer = ({played,setPlayed,video,skip,setSkip,setAddBtn}) => {
 
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -22,11 +22,13 @@ const VideoPlayer = ({played,setPlayed,video,skip,setSkip}) => {
         const title = data.items[0].snippet.title;
         const description =  data.items[0].snippet.description;
         setDetails({title, description});
+        setAddBtn(true);
       } catch(err) {
         setDetails({title: "Video Title goes here", description: "This is the description of the video"});
         setDuration(0);
         setPlayed(0);
         setPlaying(false);
+        setAddBtn(false);
       }
     }
     getData();
