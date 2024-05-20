@@ -46,10 +46,9 @@ const Modal = ({setOpenModal,timestamp,edit,video}) => {
       <div className = "fixed w-[60vw] p-5 bg-white h-[350px] rounded-lg text-center flex flex-col min-w-[250px] max-w-[600px] top-[15rem] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
         <h3 className = "mr-auto mt-2 mb-3 text-[1.5rem] font-semibold">Note Content</h3>
         <TextEditor note = {note} setNote = {setNote}/>
-        {/* <textarea placeholder = "Add your content..." className = "h-full p-2 border-2 border-[#EAECF0] rounded-lg" value = {note?.content} onChange = {(e) => setNote(prev => ({...prev,content: e.target.value}))}></textarea> */}
-        <div className="flex w-full gap-2 my-5 itmems-center">
+        <div className="flex w-full gap-2 my-5 max-md:flex-wrap itmems-center">
           {!edit && <ImageUploader setChosenImg = {setChosenImg}/>}
-          <button className = " ml-auto border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-green-200" onClick = {edit? updateNoteDetails: createNote}>
+          <button className = " max-md:ml-0 ml-auto border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-green-200" onClick = {edit? updateNoteDetails: createNote}>
             {edit ? "Update Note" : "Add Note" }
           </button>
           <button className = "border-2 border[#EAECF0] font-semibold text-[#344054] p-2 rounded-lg hover:bg-gray-200" onClick={() => setOpenModal(false)}>Cancel</button>
